@@ -11,7 +11,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body>
         <header style={{ padding: "10px", backgroundColor: "#0070f3", color: "#fff" }}>
           <h1>Atendimento App</h1>
