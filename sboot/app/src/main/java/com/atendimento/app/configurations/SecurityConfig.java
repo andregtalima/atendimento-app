@@ -78,7 +78,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         logger.info("Iniciando configuração de segurança...");
 
-        // Configurar CSRF
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+
+        //onfigurar CSRF
         configureCsrf(http);
 
         // Configurar autorização de rotas
