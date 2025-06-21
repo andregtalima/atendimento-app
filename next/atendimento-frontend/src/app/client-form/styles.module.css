@@ -2,11 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 150px);
     width: 100%;
 }
 
 .content {
+    width: 100%;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,10 +37,12 @@
 }
 
 .content textarea {
-    padding: 48px 200px;
     border: none;
     border-radius: 8px;
     font-weight: 600;
+    overflow: auto;
+    height: 120px;
+    padding: 8px;
 }
 
 .error {
@@ -46,13 +50,25 @@
     color: red;
 }
 
+.success {
+    font-weight: 700;
+    color: green;
+}
+
 .content button {
     padding: 12px 48px;
     margin: 0 auto;
     border: 0;
-    background: #3A7AB2;
+    background: #0E2E58;
     color: #fafafa;
     font-size: 16px;
     font-weight: 600;
     border-radius: 8px;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.content button:hover {
+    background: #3A7AB2;
+    transform: scale(1.02);
 }

@@ -38,15 +38,15 @@ export default function Login() {
       }
     } catch (err: any) {
       setError("Usuário ou senha inválidos.");
-      console.error(err.message);
+      console.error(err);
     }
   }
 
   return (
     <div className={styles.container}>
       <section className={styles.content}>
-        <h1>Login</h1>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
+          <h1>Login</h1>
           <input
             type="text"
             placeholder="Usuário"
