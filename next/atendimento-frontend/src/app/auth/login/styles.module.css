@@ -52,7 +52,16 @@
     border-radius: 8px;
 }
 
+.loginForm button:disabled {
+    background: #ccc;
+}
+
 .loginForm button:hover {
     background: #3A7AB2;
     transform: scale(1.02);
+}
+
+.error {
+    color: red;
+    font-weight: 700;
 }

@@ -9,19 +9,23 @@ export default function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+    setLoading(true);
 
     if (!user || !password) {
       setError("Preencha todos os campos.");
+      setLoading(false);
       return;
     }
 
     try {
-      const response = await api.post("/login", {
+      const response = await api.post("/auth/login", {
         username: user,
         password,
       });
@@ -33,12 +37,19 @@ export default function Login() {
         router.push("/");
         setUser("");
         setPassword("");
+        setError("");
       } else {
         setError("Token não recebido da API.");
       }
     } catch (err: any) {
       setError("Usuário ou senha inválidos.");
-      console.error(err);
+      setTimeout(() => {
+        setUser("");
+        setPassword("");
+        setError("");
+      }, 3000);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -59,9 +70,13 @@ export default function Login() {
             placeholder="Senha do usuário"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            aria-label="Senha"
+            disabled={loading}
           />
-          <button type="submit">Acessar</button>
-          {error && <p className={styles.error}>{error}</p>}
+          <button type="submit" disabled={loading}>
+            {loading ? "Acessando..." : "Acessar"}
+          </button>
+          {error && !loading && <p className={styles.error}>{error}</p>}
         </form>
       </section>
     </div>
